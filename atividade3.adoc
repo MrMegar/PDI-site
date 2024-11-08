@@ -1,0 +1,34 @@
+= Atividade 3: Recuperação de Imagem Esteganografada
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+:imagesdir: ./figs
+
+== Recuperação de Imagem Esteganografada
+
+Nesta atividade, aplicamos um algoritmo para recuperar uma imagem escondida nos bits menos significativos de outra imagem.
+
+=== Imagem Esteganografada (Imagem Original)
+
+Abaixo está a imagem esteganografada que contém os dados escondidos.
+
+.image_original
+image::imagem_esteganografada.png[Imagem Esteganografada, title="Imagem Esteganografada"]
+
+=== Código para Recuperação da Imagem
+
+O código a seguir executa a recuperação da imagem escondida nos bits menos significativos e salva o resultado como `imagem_recuperada.png`.
+
+[source,python]
+.Código para Recuperação de Imagem Esteganografada
+----
+include::exemplos/Atividade4.py[]
+----
+
+=== Imagem Recuperada (Imagem Pós-Processamento)
+
+Abaixo está a imagem recuperada após a execução do código.
+
+.image_processed
+image::imagem_recuperada.png[Imagem Recuperada, title="Imagem Recuperada"]
