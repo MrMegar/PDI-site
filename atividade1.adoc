@@ -1,0 +1,66 @@
+= Atividade 1: Manipulação de Pixels
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+:imagesdir: ./figs
+
+== Manipulação de Pixels em Imagens
+
+Nesta atividade, exploraremos a manipulação direta de pixels em imagens, com dois exercícios. Cada exercício inclui uma imagem original, o código usado para processamento e a imagem resultante.
+
+=== Exercício 1
+
+==== Imagem Original
+
+Esta é a imagem original que servirá de base para o processamento.
+
+.image_original
+image::imagem1_original.png[Imagem Original, title="Imagem Original"]
+
+==== Código de Manipulação de Pixels
+
+Abaixo está o código que aplica a manipulação de pixels no Exercício 1. Substitua `exercicio1.py` pelo caminho do seu arquivo de código.
+
+[source,python]
+.Código Exemplo para Exercício 1
+----
+include::exemplos/exercicio1.py[]
+----
+
+==== Imagem Pós-Processamento
+
+Abaixo está a imagem resultante após aplicar o código acima.
+
+.image_processed
+image::imagem1_processada.png[Imagem Pós-Processamento, title="Imagem Pós-Processamento"]
+
+=== Exercício 2
+
+==== Imagem Original
+
+Esta é a imagem original para o segundo exercício.
+
+.image_original
+image::imagem2_original.png[Imagem Original, title="Imagem Original"]
+
+==== Código de Manipulação de Pixels
+
+O código a seguir aplica uma transformação de pixels na imagem do Exercício 2. Substitua `exercicio2.py` pelo caminho do seu arquivo de código.
+
+[source,python]
+.Código Exemplo para Exercício 2
+----
+include::exemplos/exercicio2.py[]
+----
+
+==== Imagem Pós-Processamento
+
+Abaixo está a imagem resultante do segundo exercício após o processamento.
+
+.image_processed
+image::imagem2_processada.png[Imagem Pós-Processamento, title="Imagem Pós-Processamento"]
+
+== Conclusão
+
+Esta atividade demonstrou como aplicar transformações de pixels em imagens. As técnicas apresentadas podem ser usadas para uma variedade de aplicações, como ajustes de brilho, contraste e realce de bordas.

@@ -1,0 +1,33 @@
+= Atividade 4: Algoritmos de Rotulação e Contagem de Objetos
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Algoritmos para Contagem e Identificação de Objetos
+
+Nesta atividade, trabalhamos com algoritmos de contagem e identificação de objetos em imagens, focando na solução de problemas específicos de rotulação e na identificação de regiões com ou sem buracos internos.
+
+=== Exercício 1: Solução para Limite de 255 Objetos
+
+O primeiro exercício aborda o problema de rotulação de objetos em uma imagem, que pode falhar ao contar mais de 255 objetos devido ao limite de armazenamento em uma imagem cinza de 8 bits.
+
+[source,cpp]
+.Código para Solução de Limite de 255 Objetos
+----
+include::exemplos/Atividade5.py[]
+----
+
+=== Exercício 2: Identificação de Regiões com Buracos e Exclusão de Bordas
+
+No segundo exercício, aprimoramos o algoritmo de contagem para identificar regiões com ou sem buracos internos, assumindo que objetos com mais de um buraco podem existir. Este algoritmo também ignora bolhas que tocam as bordas da imagem.
+
+[source,cpp]
+.Código para Identificação de Regiões com Buracos e Exclusão de Bordas
+----
+include::exemplos/Atividade6.py[]
+----
+
+== Conclusão
+
+Nesta atividade, abordamos a rotulação e a contagem de objetos em imagens, oferecendo soluções para contornar limitações de armazenamento e identificar regiões com buracos, além de excluir objetos que tocam as bordas da imagem.

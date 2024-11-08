@@ -1,0 +1,36 @@
+= Atividade 2: Geração e Comparação de Imagem Senoidal
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+:imagesdir: ./figs
+
+== Geração de Imagem Senoidal e Comparação entre Formatos
+
+Nesta atividade, geramos uma imagem senoidal e a salvamos em dois formatos: PNG e YML. Em seguida, comparamos uma linha da imagem em ambos os formatos para observar possíveis diferenças.
+
+=== Código de Geração da Imagem Senoidal
+
+O código a seguir gera uma imagem senoidal de 256x256 pixels, salva a imagem em dois formatos (PNG e YML), e então carrega e compara uma linha das duas imagens.
+
+[source,python]
+.Código para Geração e Comparação de Imagem Senoidal
+----
+include::exemplos/Atividade3.py[]
+----
+
+=== Imagem Senoidal
+
+A imagem senoidal gerada pelo código é exibida abaixo.
+
+.image_senoide
+image::senoide-256.png[Imagem Senóide, title="Imagem Senóide"]
+
+== Conclusão
+
+Nesta atividade, aprendemos a gerar uma imagem senoidal, salvar em diferentes formatos e comparar a precisão ao carregar a imagem a partir dos arquivos salvos. Observamos a diferença entre os valores de intensidade na linha 128 das duas imagens.
+
+== Links Úteis
+
+* link:https://docs.opencv.org/[Documentação do OpenCV]
+* link:https://matplotlib.org/[Documentação do Matplotlib]

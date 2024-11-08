@@ -1,0 +1,36 @@
+= Atividade 7: Efeito Tilt-Shift em Imagens e Vídeos
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Efeito Tilt-Shift para Imagens e Vídeos
+
+Nesta atividade, implementamos o efeito tilt-shift em uma imagem e em um vídeo. O efeito tilt-shift simula a miniaturização de cenas, focando uma região central da imagem e desfocando as áreas ao redor.
+
+=== Exercício 1: Tilt-Shift em Imagens
+
+Este exercício aplica o efeito tilt-shift em uma imagem, permitindo ajustar:
+- A altura da região central que estará em foco.
+- A intensidade de desfoque nas áreas fora de foco.
+- A posição vertical do centro da região focada.
+
+[source,python]
+.Código para Efeito Tilt-Shift em Imagens
+----
+include::exemplos/Atividade11.py[]
+----
+
+=== Exercício 2: Tilt-Shift em Vídeos
+
+Este exercício aplica o efeito tilt-shift a um vídeo, simulando um efeito de stop motion para enfatizar a miniaturização. O programa processa cada quadro, aplica o efeito, descarta quadros em uma taxa ajustável, e salva o resultado em um novo arquivo de vídeo.
+
+[source,python]
+.Código para Efeito Tilt-Shift em Vídeos
+----
+include::exemplos/Atividade12.py[]
+----
+
+== Conclusão
+
+Nesta atividade, exploramos o efeito tilt-shift para simular miniaturização em imagens e vídeos. Ao manipular parâmetros como a altura e posição do foco e a intensidade do desfoque, o efeito tilt-shift pode ser ajustado para criar diferentes interpretações visuais das cenas.

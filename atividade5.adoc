@@ -1,0 +1,33 @@
+= Atividade 5: Equalização de Histograma e Detector de Movimento
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Algoritmos para Equalização de Histograma e Detecção de Movimento
+
+Nesta atividade, implementamos dois algoritmos baseados em histogramas. O primeiro realiza a equalização do histograma em tempo real para ajustar o contraste da imagem capturada. O segundo detecta movimento comparando o histograma atual com o último histograma capturado, ativando um alarme quando a diferença ultrapassa um limiar definido.
+
+=== Exercício 1: Equalização de Histograma em Tempo Real
+
+Este código realiza a equalização de histograma para cada quadro capturado pela câmera, ajustando automaticamente o contraste da imagem em tons de cinza. Aponte a câmera para ambientes com diferentes iluminações e observe o efeito.
+
+[source,cpp]
+.Código para Equalização de Histograma
+----
+include::exemplos/Atividade7.py[]
+----
+
+=== Exercício 2: Detector de Movimento por Comparação de Histograma
+
+Este código calcula o histograma de cada quadro capturado, compara-o com o histograma anterior e aciona um alarme quando a diferença entre eles ultrapassa um limiar definido. Apenas uma componente de cor é utilizada na análise.
+
+[source,cpp]
+.Código para Detector de Movimento
+----
+include::exemplos/Atividade8.py[]
+----
+
+== Conclusão
+
+Nesta atividade, exploramos o uso de histogramas para dois objetivos diferentes: equalização de contraste em tempo real e detecção de movimento. Ambos os algoritmos podem ser úteis em situações que envolvem monitoramento e ajustes automáticos de imagem.

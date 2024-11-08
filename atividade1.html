@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Rafael Cabral">
-<title>Unidade 2 - Conteúdo em Breve</title>
+<title>Atividade 1: Manipulação de Pixels</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -434,10 +434,128 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 </head>
 <body class="article">
 <div id="header">
-<h1>Unidade 2 - Conteúdo em Breve</h1>
+<h1>Atividade 1: Manipulação de Pixels</h1>
 <div class="details">
 <span id="author" class="author">Rafael Cabral</span><br>
 <span id="email" class="email"><a href="mailto:rafael.cabral.041@ufrn.edu.br">rafael.cabral.041@ufrn.edu.br</a></span><br>
@@ -445,23 +563,191 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_em_breve">Em breve</a></li>
+<li><a href="#_manipulação_de_pixels_em_imagens">Manipulação de Pixels em Imagens</a>
+<ul class="sectlevel2">
+<li><a href="#_exercício_1">Exercício 1</a></li>
+<li><a href="#_exercício_2">Exercício 2</a></li>
+</ul>
+</li>
+<li><a href="#_conclusão">Conclusão</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_em_breve">Em breve</h2>
+<h2 id="_manipulação_de_pixels_em_imagens">Manipulação de Pixels em Imagens</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>O conteúdo para a Unidade 2 estará disponível em breve.</p>
+<p>Nesta atividade, exploraremos a manipulação direta de pixels em imagens, com dois exercícios. Cada exercício inclui uma imagem original, o código usado para processamento e a imagem resultante.</p>
+</div>
+<div class="sect2">
+<h3 id="_exercício_1">Exercício 1</h3>
+<div class="sect3">
+<h4 id="_imagem_original">Imagem Original</h4>
+<div class="paragraph">
+<p>Esta é a imagem original que servirá de base para o processamento.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./figs/imagem1_original.png" alt="Imagem Original">
+</div>
+<div class="title">Figure 1. Imagem Original</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_código_de_manipulação_de_pixels">Código de Manipulação de Pixels</h4>
+<div class="paragraph">
+<p>Abaixo está o código que aplica a manipulação de pixels no Exercício 1. Substitua <code>exercicio1.py</code> pelo caminho do seu arquivo de código.</p>
+</div>
+<div class="listingblock">
+<div class="title">Código Exemplo para Exercício 1</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
+
+<span class="c1"># Função para criar o negativo de uma região da imagem
+</span><span class="k">def</span> <span class="nf">apply_negative</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="c1"># Obtém as coordenadas da região
+</span>    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">p2</span>
+
+    <span class="c1"># Corrige a ordem das coordenadas, se necessário
+</span>    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="nf">max</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+
+    <span class="c1"># Aplica o negativo na região selecionada
+</span>    <span class="n">image</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">image</span><span class="p">[</span><span class="n">y_min</span><span class="p">:</span><span class="n">y_max</span><span class="p">,</span> <span class="n">x_min</span><span class="p">:</span><span class="n">x_max</span><span class="p">]</span>
+
+<span class="c1"># Carrega a imagem em escala de cinza
+</span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="sh">"</span><span class="s">bolhas.png</span><span class="sh">"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao abrir a imagem </span><span class="sh">'</span><span class="s">bolhas.png</span><span class="sh">'"</span><span class="p">)</span>
+    <span class="nf">exit</span><span class="p">()</span>
+
+<span class="c1"># Mostra a imagem original
+</span><span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Imagem Original</span><span class="sh">"</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Solicita ao usuário as coordenadas dos pontos
+</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite as coordenadas de P1 (x1 y1): </span><span class="sh">"</span><span class="p">).</span><span class="nf">split</span><span class="p">())</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite as coordenadas de P2 (x2 y2): </span><span class="sh">"</span><span class="p">).</span><span class="nf">split</span><span class="p">())</span>
+
+<span class="c1"># Aplica o negativo na região definida pelos pontos
+</span><span class="nf">apply_negative</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span>
+
+<span class="c1"># Exibe a imagem com a região modificada
+</span><span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Imagem com Região Negativa</span><span class="sh">"</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_imagem_pós_processamento">Imagem Pós-Processamento</h4>
+<div class="paragraph">
+<p>Abaixo está a imagem resultante após aplicar o código acima.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./figs/imagem1_processada.png" alt="Imagem Pós-Processamento">
+</div>
+<div class="title">Figure 2. Imagem Pós-Processamento</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercício_2">Exercício 2</h3>
+<div class="sect3">
+<h4 id="_imagem_original_2">Imagem Original</h4>
+<div class="paragraph">
+<p>Esta é a imagem original para o segundo exercício.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./figs/imagem2_original.png" alt="Imagem Original">
+</div>
+<div class="title">Figure 3. Imagem Original</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_código_de_manipulação_de_pixels_2">Código de Manipulação de Pixels</h4>
+<div class="paragraph">
+<p>O código a seguir aplica uma transformação de pixels na imagem do Exercício 2. Substitua <code>exercicio2.py</code> pelo caminho do seu arquivo de código.</p>
+</div>
+<div class="listingblock">
+<div class="title">Código Exemplo para Exercício 2</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
+
+<span class="c1"># Função para trocar os quadrantes da imagem
+</span><span class="k">def</span> <span class="nf">trocar_quadrantes</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="c1"># Obtém as dimensões da imagem
+</span>    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1"># Verifica se as dimensões são múltiplas de 2
+</span>    <span class="k">if</span> <span class="n">height</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">width</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">A imagem deve ter dimensões múltiplas de 2.</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># Define as regiões dos quadrantes
+</span>    <span class="n">h_half</span><span class="p">,</span> <span class="n">w_half</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="c1"># Cria uma nova imagem para armazenar os quadrantes trocados
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+
+    <span class="c1"># Troca os quadrantes
+</span>    <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">h_half</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w_half</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">h_half</span><span class="p">:</span><span class="n">height</span><span class="p">,</span> <span class="n">w_half</span><span class="p">:</span><span class="n">width</span><span class="p">]</span>  <span class="c1"># Quadrante inferior direito
+</span>    <span class="n">result</span><span class="p">[</span><span class="n">h_half</span><span class="p">:</span><span class="n">height</span><span class="p">,</span> <span class="n">w_half</span><span class="p">:</span><span class="n">width</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">h_half</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w_half</span><span class="p">]</span>  <span class="c1"># Quadrante superior esquerdo
+</span>    <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">h_half</span><span class="p">,</span> <span class="n">w_half</span><span class="p">:</span><span class="n">width</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">h_half</span><span class="p">:</span><span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w_half</span><span class="p">]</span>  <span class="c1"># Quadrante inferior esquerdo
+</span>    <span class="n">result</span><span class="p">[</span><span class="n">h_half</span><span class="p">:</span><span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w_half</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">h_half</span><span class="p">,</span> <span class="n">w_half</span><span class="p">:</span><span class="n">width</span><span class="p">]</span>  <span class="c1"># Quadrante superior direito
+</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Carrega a imagem
+</span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="sh">"</span><span class="s">bolhas.png</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao abrir a imagem </span><span class="sh">'</span><span class="s">bolhas.png</span><span class="sh">'"</span><span class="p">)</span>
+    <span class="nf">exit</span><span class="p">()</span>
+
+<span class="c1"># Mostra a imagem original
+</span><span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Imagem Original</span><span class="sh">"</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Troca os quadrantes
+</span><span class="n">image_trocada</span> <span class="o">=</span> <span class="nf">trocar_quadrantes</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="c1"># Exibe a imagem com os quadrantes trocados
+</span><span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Imagem com Quadrantes Trocados</span><span class="sh">"</span><span class="p">,</span> <span class="n">image_trocada</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_imagem_pós_processamento_2">Imagem Pós-Processamento</h4>
+<div class="paragraph">
+<p>Abaixo está a imagem resultante do segundo exercício após o processamento.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./figs/imagem2_processada.png" alt="Imagem Pós-Processamento">
+</div>
+<div class="title">Figure 4. Imagem Pós-Processamento</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusão">Conclusão</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Esta atividade demonstrou como aplicar transformações de pixels em imagens. As técnicas apresentadas podem ser usadas para uma variedade de aplicações, como ajustes de brilho, contraste e realce de bordas.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-08 14:20:52 -0300
+Last updated 2024-11-08 14:49:44 -0300
 </div>
 </div>
 </body>

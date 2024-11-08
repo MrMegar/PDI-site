@@ -1,0 +1,33 @@
+= Atividade 6: Filtros de Média e Profundidade de Campo Digital
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Aplicação de Filtros para Convolução e Correção de Profundidade de Campo
+
+Nesta atividade, trabalhamos com dois algoritmos de processamento de imagens: o primeiro realiza a convolução com diferentes tamanhos de filtros de média, e o segundo utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em cenas sem movimento.
+
+=== Exercício 1: Convolução com Filtros de Média
+
+Este exercício aplica filtros de média de tamanhos diferentes (3×3, 11×11, e 21×21) a uma imagem. O objetivo é observar e comparar os resultados obtidos com cada máscara.
+
+[source,python]
+.Código para Convolução com Filtros de Média
+----
+include::exemplos/Atividade9.py[]
+----
+
+=== Exercício 2: Correção de Profundidade de Campo com Filtro Laplaciano
+
+Este exercício utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em imagens capturadas de cenas sem movimento. O algoritmo captura um quadro do vídeo, aplica o filtro e exibe a imagem corrigida.
+
+[source,python]
+.Código para Correção de Profundidade de Campo
+----
+include::exemplos/Atividade10.py[]
+----
+
+== Conclusão
+
+Nesta atividade, exploramos a aplicação de filtros para melhorar a visualização de imagens. O uso de filtros de média permitiu uma análise comparativa entre diferentes tamanhos de máscara, enquanto o filtro laplaciano foi utilizado para corrigir o efeito de profundidade de campo em cenas específicas.
