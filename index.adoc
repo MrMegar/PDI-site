@@ -1,0 +1,13 @@
+= Bem-vindo ao Site de Rafael Cabral
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Sobre Mim
+
+Olá! Meu nome é Rafael Cabral, e este é o meu site sobre Processamento Digital de Imagens (PDI). Aqui você encontrará materiais e atividades do curso.
+
+Clique no link abaixo para acessar a página de PDI:
+
+* link:pdi.html[Acessar Página de PDI]

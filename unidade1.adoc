@@ -1,0 +1,15 @@
+= Unidade 1 - Introdução ao PDI e Conceitos Básicos
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Atividades da Unidade 1
+
+* Atividade 1: Conceitos básicos de PDI
+* Atividade 2: Operações no domínio espacial
+* Atividade 3: Transformações de intensidade
+* Atividade 4: Filtros espaciais
+* Atividade 5: Histograma e equalização
+* Atividade 6: Detecção de bordas
+* Atividade 7: Segmentação de imagens

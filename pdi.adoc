@@ -1,0 +1,12 @@
+= Página de PDI
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Unidades do Curso de PDI
+
+Aqui estão as unidades do curso:
+
+* link:unidade1.html[Unidade 1 - Introdução ao PDI e Conceitos Básicos]
+* Unidade 2 - Em breve
