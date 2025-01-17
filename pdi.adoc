@@ -9,4 +9,4 @@ Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
 Aqui estão as unidades do curso:
 
 * link:unidade1.html[Unidade 1 - Introdução ao PDI e Conceitos Básicos]
-* Unidade 2 - Em breve
+* link:unidade2.html[Unidade 2 - Estudo de PDI e Conceitos Intermediarios]
