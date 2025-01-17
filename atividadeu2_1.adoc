@@ -1,0 +1,27 @@
+= Atividade X: Filtro Homomórfico para Correção de Iluminação
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Filtro Homomórfico para Imagens com Iluminação Irregular
+
+Nesta atividade, implementamos o filtro homomórfico para corrigir imagens em tons de cinza que apresentam iluminação irregular. O filtro homomórfico atua no domínio logarítmico, separando a componente de iluminação (baixa frequência) da componente de detalhes (alta frequência), possibilitando o realce de detalhes e a atenuação de variações de iluminação.
+
+=== Exercício: Aplicando o Filtro Homomórfico
+
+Este exercício aplica o filtro homomórfico em uma imagem de entrada, permitindo ajustar:
+- O raio de corte (d0), que define a faixa de frequência em que o filtro atua.
+- O ganho para altas frequências (rh), que controla o realce de detalhes.
+- O ganho para baixas frequências (rl), que controla a supressão de variações de iluminação.
+- O parâmetro (c), que ajusta a suavidade da transição do filtro.
+
+[source,python]
+.Código Python para Filtro Homomórfico
+----
+include::exemplos/atividade13_u2.py[]
+----
+
+== Conclusão
+
+Nesta atividade, vimos como o filtro homomórfico pode corrigir a iluminação irregular em imagens, trazendo maior realce de detalhes e uniformidade de iluminação. Ajustando parâmetros como o raio de corte, ganhos de altas e baixas frequências e o fator de transição, podemos controlar o grau de correção e o nível de nitidez desejado na imagem resultante.

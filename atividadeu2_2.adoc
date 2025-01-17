@@ -1,0 +1,36 @@
+= Atividade X: Segmentação de Imagem com K-Means e Centros Aleatórios
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Segmentação de Imagens utilizando K-Means
+
+Nesta atividade, utilizamos o algoritmo K-Means para segmentar uma imagem em clusters de cor. A grande diferença aqui é o uso de `nRodadas=1` e a inicialização dos centros de forma aleatória, permitindo observar a variabilidade dos resultados.
+
+=== Exercício: K-Means com Inicialização Aleatória
+
+Este exercício executa o algoritmo K-Means com:
+- `nRodadas = 1`  
+- `cv2.KMEANS_RANDOM_CENTERS` na inicialização  
+- 10 rodadas externas (chamadas sequenciais), gerando 10 imagens segmentadas diferentes.
+
+[source,python]
+.Código Python para Segmentação com Inicialização Aleatória
+----
+include::exemplos/atividade14_u2.py[]
+----
+
+== Comparando Resultados
+
+Ao rodar o script acima várias vezes (ou ao observar as 10 imagens geradas), notamos que a segmentação resultante pode variar significativamente entre as execuções. A justificativa para isso é:
+
+1. *Inicialização Aleatória*: Os centros de cada cluster são escolhidos aleatoriamente (no espaço de cores), o que pode levar a configurações iniciais muito distintas.
+
+2. *Única Rodada de Otimização*: Ao usar `nRodadas = 1`, o algoritmo não reinicia outras vezes para tentar buscar uma melhor solução global. Ele converge diretamente para o mínimo local definido pela posição inicial dos centros.
+
+3. *Distribuição dos Dados*: Se a imagem tiver muitas regiões com cores distintas, pequenas diferenças na inicialização podem levar a clusters finais distintos.
+
+== Conclusão
+
+Nesta atividade, demonstramos como a escolha dos parâmetros em um algoritmo de clustering pode influenciar significativamente o resultado. Ao utilizarmos apenas uma rodada (`nRodadas=1`) e inicialização aleatória (`cv2.KMEANS_RANDOM_CENTERS`), cada execução pode convergir para uma solução diferente. Isso evidencia a importância de realizar múltiplas inicializações quando se deseja encontrar uma solução mais estável e representativa na segmentação de imagens.

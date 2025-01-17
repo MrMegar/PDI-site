@@ -1,8 +1,13 @@
-= Unidade 2 - Conteúdo em Breve
+= Unidade 2 - Introdução ao PDI e Conceitos Básicos
 Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
 :toc:
 :icons:
 :source-highlighter: rouge
 
-== Em breve
-O conteúdo para a Unidade 2 estará disponível em breve.
+== Atividades da Unidade 2
+
+Confira abaixo as atividades relacionadas a esta unidade:
+
+* link:atividadeu2_1.html[Atividade 2: Segmentação de Imagens com K-Means e Centros Aleatórios]
+* link:atividadeu2_2.html[Atividade 4: Filtro Homomórfico para Correção de Iluminação]
+
