@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Rafael Cabral">
-<title>Atividade 6: Filtros de Média e Profundidade de Campo Digital</title>
+<title>Atividade 1: Extração de Contornos em Imagens</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -555,7 +555,7 @@ pre.rouge .gs {
 </head>
 <body class="article">
 <div id="header">
-<h1>Atividade 6: Filtros de Média e Profundidade de Campo Digital</h1>
+<h1>Atividade 1: Extração de Contornos em Imagens</h1>
 <div class="details">
 <span id="author" class="author">Rafael Cabral</span><br>
 <span id="email" class="email"><a href="mailto:rafael.cabral.041@ufrn.edu.br">rafael.cabral.041@ufrn.edu.br</a></span><br>
@@ -563,10 +563,9 @@ pre.rouge .gs {
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_aplicação_de_filtros_para_convolução_e_correção_de_profundidade_de_campo">Aplicação de Filtros para Convolução e Correção de Profundidade de Campo</a>
+<li><a href="#_extraindo_contornos_e_gerando_arquivos_svg">Extraindo Contornos e Gerando Arquivos SVG</a>
 <ul class="sectlevel2">
-<li><a href="#_exercício_1_convolução_com_filtros_de_média">Exercício 1: Convolução com Filtros de Média</a></li>
-<li><a href="#_exercício_2_correção_de_profundidade_de_campo_com_filtro_laplaciano">Exercício 2: Correção de Profundidade de Campo com Filtro Laplaciano</a></li>
+<li><a href="#_exercício_extração_de_contornos_com_diferentes_aproximações">Exercício: Extração de Contornos com Diferentes Aproximações</a></li>
 </ul>
 </li>
 <li><a href="#_conclusão">Conclusão</a></li>
@@ -575,136 +574,73 @@ pre.rouge .gs {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_aplicação_de_filtros_para_convolução_e_correção_de_profundidade_de_campo">Aplicação de Filtros para Convolução e Correção de Profundidade de Campo</h2>
+<h2 id="_extraindo_contornos_e_gerando_arquivos_svg">Extraindo Contornos e Gerando Arquivos SVG</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta atividade, trabalhamos com dois algoritmos de processamento de imagens: o primeiro realiza a convolução com diferentes tamanhos de filtros de média, e o segundo utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em cenas sem movimento.</p>
+<p>Nesta atividade, adaptamos o programa <code>contornos.cpp</code> para Python, permitindo extrair contornos de objetos binarizados em uma imagem e gerar uma saída vetorial em formato SVG. A imagem resultante com o contorno sobreposto também é exibida na tela.</p>
 </div>
 <div class="sect2">
-<h3 id="_exercício_1_convolução_com_filtros_de_média">Exercício 1: Convolução com Filtros de Média</h3>
+<h3 id="_exercício_extração_de_contornos_com_diferentes_aproximações">Exercício: Extração de Contornos com Diferentes Aproximações</h3>
 <div class="paragraph">
-<p>Este exercício aplica filtros de média de tamanhos diferentes (3×3, 11×11, e 21×21) a uma imagem. O objetivo é observar e comparar os resultados obtidos com cada máscara.</p>
+<p>O código em Python lê uma imagem em tons de cinza, realiza a binarização (threshold) e, em seguida, chama a função <code>findContours</code> com os modos <code>CHAIN_APPROX_NONE</code> ou <code>CHAIN_APPROX_SIMPLE</code>. A principal diferença entre esses modos está na quantidade de pontos gerados para cada contorno:
+- <code>CHAIN_APPROX_NONE</code>: Mantém todos os pontos da borda.
+- <code>CHAIN_APPROX_SIMPLE</code>: Simplifica o contorno, armazenando apenas os vértices necessários (o que reduz significativamente o número de pontos).</p>
 </div>
 <div class="listingblock">
-<div class="title">Código para Convolução com Filtros de Média</div>
+<div class="title">Código Python para Extração de Contornos e Geração de SVG</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
+<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">cv2</span>
 <span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
-<span class="k">def</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">):</span>
-    <span class="c1"># Cria uma máscara de média com o tamanho especificado
-</span>    <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">kernel_size</span> <span class="o">*</span> <span class="n">kernel_size</span><span class="p">)</span>
-    <span class="c1"># Aplica a convolução usando o filtro de média
-</span>    <span class="n">filtered_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">filter2D</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filtered_frame</span>
-
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># Inicializa a captura de vídeo
-</span>    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Câmera indisponível</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Uso: python contornos.py &lt;entrada&gt; &lt;saida.svg&gt; [approx]</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="c1"># Configura a resolução da captura
-</span>    <span class="n">cap</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span>
-    <span class="n">cap</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+    <span class="n">input_image</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">output_svg</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Largura =</span><span class="sh">"</span><span class="p">,</span> <span class="nf">int</span><span class="p">(</span><span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Altura =</span><span class="sh">"</span><span class="p">,</span> <span class="nf">int</span><span class="p">(</span><span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">approx_mode</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nf">upper</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">approx_mode</span> <span class="o">=</span> <span class="sh">"</span><span class="s">NONE</span><span class="sh">"</span>
 
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="c1"># Captura o frame
-</span>        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao capturar a imagem</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">break</span>
+    <span class="n">image_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">image_gray</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao abrir imagem:</span><span class="sh">"</span><span class="p">,</span> <span class="n">input_image</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="c1"># Converte para tons de cinza
-</span>        <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">img_bin</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">threshold</span><span class="p">(</span>
+        <span class="n">image_gray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_OTSU</span>
+    <span class="p">)</span>
 
-        <span class="c1"># Aplica filtros de média com diferentes tamanhos de máscara
-</span>        <span class="n">filtered_3x3</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="n">filtered_11x11</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-        <span class="n">filtered_21x21</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">approx_mode</span> <span class="o">==</span> <span class="sh">"</span><span class="s">NONE</span><span class="sh">"</span><span class="p">:</span>
+        <span class="n">chain_approx</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_NONE</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">chain_approx</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_SIMPLE</span>
 
-        <span class="c1"># Exibe os resultados
-</span>        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Original</span><span class="sh">"</span><span class="p">,</span> <span class="n">gray_frame</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 3x3</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_3x3</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 11x11</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_11x11</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 21x21</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_21x21</span><span class="p">)</span>
+    <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">findContours</span><span class="p">(</span><span class="n">img_bin</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">chain_approx</span><span class="p">)</span>
+    <span class="n">image_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">img_bin</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_GRAY2BGR</span><span class="p">)</span>
 
-        <span class="c1"># Pressiona 'ESC' para sair
-</span>        <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
-            <span class="k">break</span>
+    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">image_gray</span><span class="p">.</span><span class="n">shape</span>
+    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_svg</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">&lt;svg height=</span><span class="sh">"</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="sh">"</span><span class="s"> width=</span><span class="sh">"</span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="sh">"</span><span class="s"> xmlns=</span><span class="sh">"</span><span class="s">http://www.w3.org/2000/svg</span><span class="sh">"</span><span class="s">&gt;</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">svg_path</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">&lt;path d=</span><span class="sh">"</span><span class="s">M </span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">y0</span><span class="si">}</span><span class="s"> </span><span class="sh">'</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">svg_path</span> <span class="o">+=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">L</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s"> </span><span class="sh">'</span>
+            <span class="n">svg_path</span> <span class="o">+=</span> <span class="sh">'</span><span class="s">Z</span><span class="sh">"</span><span class="s"> fill=</span><span class="sh">"</span><span class="s">#cccccc</span><span class="sh">"</span><span class="s"> stroke=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="s"> stroke-width=</span><span class="sh">"</span><span class="s">1</span><span class="sh">"</span><span class="s"> /&gt;</span><span class="se">\n</span><span class="sh">'</span>
+            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">svg_path</span><span class="p">)</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="nf">drawContours</span><span class="p">(</span><span class="n">image_bgr</span><span class="p">,</span> <span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">&lt;/svg&gt;</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
 
-    <span class="c1"># Libera a captura e fecha as janelas
-</span>    <span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Contornos</span><span class="sh">"</span><span class="p">,</span> <span class="n">image_bgr</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_exercício_2_correção_de_profundidade_de_campo_com_filtro_laplaciano">Exercício 2: Correção de Profundidade de Campo com Filtro Laplaciano</h3>
-<div class="paragraph">
-<p>Este exercício utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em imagens capturadas de cenas sem movimento. O algoritmo captura um quadro do vídeo, aplica o filtro e exibe a imagem corrigida.</p>
-</div>
-<div class="listingblock">
-<div class="title">Código para Correção de Profundidade de Campo</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># Abre o vídeo
-</span>    <span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="sh">"</span><span class="s">vasos720p.mp4</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">video</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao abrir o vídeo</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
-
-    <span class="c1"># Configura o vídeo para começar a partir do segundo 1 (aproximadamente 30 frames)
-</span>    <span class="n">fps</span> <span class="o">=</span> <span class="n">video</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
-    <span class="n">start_frame</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">fps</span><span class="p">)</span>  <span class="c1"># Vai para o segundo 1
-</span>    <span class="n">video</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_POS_FRAMES</span><span class="p">,</span> <span class="n">start_frame</span><span class="p">)</span>
-    
-    <span class="c1"># Captura um único frame do vídeo para análise
-</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">video</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao capturar o frame do vídeo</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
-    
-    <span class="c1"># Converte o frame para tons de cinza
-</span>    <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-
-    <span class="c1"># Aplica o filtro laplaciano de tamanho 3x3
-</span>    <span class="n">laplacian</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">Laplacian</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CV_32F</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">abs_laplacian</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">laplacian</span><span class="p">)</span>  <span class="c1"># Valor absoluto do Laplaciano
-</span>
-    <span class="c1"># Exibe a imagem Laplaciana para verificar o resultado da borda
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Laplaciano Absoluto</span><span class="sh">"</span><span class="p">,</span> <span class="n">abs_laplacian</span> <span class="o">/</span> <span class="n">abs_laplacian</span><span class="p">.</span><span class="nf">max</span><span class="p">())</span>  <span class="c1"># Normaliza para visualização
-</span>
-    <span class="c1"># Define um limiar mais baixo para capturar mais áreas
-</span>    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">abs_laplacian</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="c1"># Usa metade da média como threshold
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Threshold adaptativo ajustado: </span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="c1"># Cria uma máscara para as áreas mais nítidas
-</span>    <span class="n">sharp_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">abs_laplacian</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
-
-    <span class="c1"># Exibe a máscara para verificar as áreas detectadas como nítidas
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Máscara de Nitidez</span><span class="sh">"</span><span class="p">,</span> <span class="n">sharp_mask</span><span class="p">)</span>
-
-    <span class="c1"># Cria uma imagem de saída para armazenar os pixels mais nítidos
-</span>    <span class="n">output_image</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-
-    <span class="c1"># Copia os pixels coloridos das áreas mais nítidas para a imagem de saída
-</span>    <span class="n">output_image</span><span class="p">[</span><span class="n">sharp_mask</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">sharp_mask</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span>
-
-    <span class="c1"># Exibe a imagem de saída
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Profundidade de Campo Corregida</span><span class="sh">"</span><span class="p">,</span> <span class="n">output_image</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Pressione qualquer tecla para fechar
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
     <span class="nf">main</span><span class="p">()</span></code></pre>
@@ -717,14 +653,14 @@ pre.rouge .gs {
 <h2 id="_conclusão">Conclusão</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta atividade, exploramos a aplicação de filtros para melhorar a visualização de imagens. O uso de filtros de média permitiu uma análise comparativa entre diferentes tamanhos de máscara, enquanto o filtro laplaciano foi utilizado para corrigir o efeito de profundidade de campo em cenas específicas.</p>
+<p>A troca de <code>CHAIN_APPROX_NONE</code> para <code>CHAIN_APPROX_SIMPLE</code> altera o número de pontos no contorno, pois o segundo método elimina pontos colineares. Ao gerar o arquivo SVG, é possível visualizar o contorno de cada objeto de forma vetorial, ao mesmo tempo em que a imagem com o contorno desenhado é exibida na tela. Dessa forma, podemos comparar o impacto da escolha do modo de aproximação no resultado final.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-17 13:03:37 -0300
+Last updated 2025-01-29 16:11:11 -0300
 </div>
 </div>
 </body>

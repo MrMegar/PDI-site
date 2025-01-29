@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Rafael Cabral">
-<title>Atividade 6: Filtros de Média e Profundidade de Campo Digital</title>
+<title>Atividade 4X: Filtragem de Forma com Operações Morfológicas</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -555,7 +555,7 @@ pre.rouge .gs {
 </head>
 <body class="article">
 <div id="header">
-<h1>Atividade 6: Filtros de Média e Profundidade de Campo Digital</h1>
+<h1>Atividade 4X: Filtragem de Forma com Operações Morfológicas</h1>
 <div class="details">
 <span id="author" class="author">Rafael Cabral</span><br>
 <span id="email" class="email"><a href="mailto:rafael.cabral.041@ufrn.edu.br">rafael.cabral.041@ufrn.edu.br</a></span><br>
@@ -563,10 +563,9 @@ pre.rouge .gs {
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_aplicação_de_filtros_para_convolução_e_correção_de_profundidade_de_campo">Aplicação de Filtros para Convolução e Correção de Profundidade de Campo</a>
+<li><a href="#_operações_morfológicas_para_pré_filtragem_de_dígitos">Operações Morfológicas para Pré-filtragem de Dígitos</a>
 <ul class="sectlevel2">
-<li><a href="#_exercício_1_convolução_com_filtros_de_média">Exercício 1: Convolução com Filtros de Média</a></li>
-<li><a href="#_exercício_2_correção_de_profundidade_de_campo_com_filtro_laplaciano">Exercício 2: Correção de Profundidade de Campo com Filtro Laplaciano</a></li>
+<li><a href="#_exercício_erosão_dilatação_abertura_e_fechamento">Exercício: Erosão, Dilatação, Abertura e Fechamento</a></li>
 </ul>
 </li>
 <li><a href="#_conclusão">Conclusão</a></li>
@@ -575,139 +574,20 @@ pre.rouge .gs {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_aplicação_de_filtros_para_convolução_e_correção_de_profundidade_de_campo">Aplicação de Filtros para Convolução e Correção de Profundidade de Campo</h2>
+<h2 id="_operações_morfológicas_para_pré_filtragem_de_dígitos">Operações Morfológicas para Pré-filtragem de Dígitos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta atividade, trabalhamos com dois algoritmos de processamento de imagens: o primeiro realiza a convolução com diferentes tamanhos de filtros de média, e o segundo utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em cenas sem movimento.</p>
+<p>Nesta atividade, utilizamos técnicas de <strong>morfologia matemática</strong> (erosão, dilatação, abertura, fechamento) para corrigir imperfeições na forma de dígitos exibidos em um visor de segmentos. O objetivo é unir partes separadas dos dígitos e facilitar o reconhecimento posterior, sem fundir o ponto decimal.</p>
 </div>
 <div class="sect2">
-<h3 id="_exercício_1_convolução_com_filtros_de_média">Exercício 1: Convolução com Filtros de Média</h3>
+<h3 id="_exercício_erosão_dilatação_abertura_e_fechamento">Exercício: Erosão, Dilatação, Abertura e Fechamento</h3>
 <div class="paragraph">
-<p>Este exercício aplica filtros de média de tamanhos diferentes (3×3, 11×11, e 21×21) a uma imagem. O objetivo é observar e comparar os resultados obtidos com cada máscara.</p>
+<p>O código a seguir lê a imagem de entrada, constrói um elemento estruturante retangular 3x3 e aplica as operações de erosão, dilatação, abertura, fechamento e abertura seguida de fechamento, concatenando os resultados lado a lado.</p>
 </div>
 <div class="listingblock">
-<div class="title">Código para Convolução com Filtros de Média</div>
+<div class="title">Código Python para Operações Morfológicas</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="k">def</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">):</span>
-    <span class="c1"># Cria uma máscara de média com o tamanho especificado
-</span>    <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">kernel_size</span> <span class="o">*</span> <span class="n">kernel_size</span><span class="p">)</span>
-    <span class="c1"># Aplica a convolução usando o filtro de média
-</span>    <span class="n">filtered_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">filter2D</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filtered_frame</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># Inicializa a captura de vídeo
-</span>    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">cap</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Câmera indisponível</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
-
-    <span class="c1"># Configura a resolução da captura
-</span>    <span class="n">cap</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span>
-    <span class="n">cap</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
-
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Largura =</span><span class="sh">"</span><span class="p">,</span> <span class="nf">int</span><span class="p">(</span><span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">)))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Altura =</span><span class="sh">"</span><span class="p">,</span> <span class="nf">int</span><span class="p">(</span><span class="n">cap</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">)))</span>
-
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="c1"># Captura o frame
-</span>        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao capturar a imagem</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">break</span>
-
-        <span class="c1"># Converte para tons de cinza
-</span>        <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-
-        <span class="c1"># Aplica filtros de média com diferentes tamanhos de máscara
-</span>        <span class="n">filtered_3x3</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="n">filtered_11x11</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-        <span class="n">filtered_21x21</span> <span class="o">=</span> <span class="nf">apply_filter</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
-
-        <span class="c1"># Exibe os resultados
-</span>        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Original</span><span class="sh">"</span><span class="p">,</span> <span class="n">gray_frame</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 3x3</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_3x3</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 11x11</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_11x11</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Filtro 21x21</span><span class="sh">"</span><span class="p">,</span> <span class="n">filtered_21x21</span><span class="p">)</span>
-
-        <span class="c1"># Pressiona 'ESC' para sair
-</span>        <span class="k">if</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
-            <span class="k">break</span>
-
-    <span class="c1"># Libera a captura e fecha as janelas
-</span>    <span class="n">cap</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_exercício_2_correção_de_profundidade_de_campo_com_filtro_laplaciano">Exercício 2: Correção de Profundidade de Campo com Filtro Laplaciano</h3>
-<div class="paragraph">
-<p>Este exercício utiliza um filtro laplaciano para corrigir o efeito de profundidade de campo em imagens capturadas de cenas sem movimento. O algoritmo captura um quadro do vídeo, aplica o filtro e exibe a imagem corrigida.</p>
-</div>
-<div class="listingblock">
-<div class="title">Código para Correção de Profundidade de Campo</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="n">cv2</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># Abre o vídeo
-</span>    <span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">VideoCapture</span><span class="p">(</span><span class="sh">"</span><span class="s">vasos720p.mp4</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">video</span><span class="p">.</span><span class="nf">isOpened</span><span class="p">():</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao abrir o vídeo</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
-
-    <span class="c1"># Configura o vídeo para começar a partir do segundo 1 (aproximadamente 30 frames)
-</span>    <span class="n">fps</span> <span class="o">=</span> <span class="n">video</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_FPS</span><span class="p">)</span>
-    <span class="n">start_frame</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">fps</span><span class="p">)</span>  <span class="c1"># Vai para o segundo 1
-</span>    <span class="n">video</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">CAP_PROP_POS_FRAMES</span><span class="p">,</span> <span class="n">start_frame</span><span class="p">)</span>
-    
-    <span class="c1"># Captura um único frame do vídeo para análise
-</span>    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">video</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erro ao capturar o frame do vídeo</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span>
-    
-    <span class="c1"># Converte o frame para tons de cinza
-</span>    <span class="n">gray_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
-
-    <span class="c1"># Aplica o filtro laplaciano de tamanho 3x3
-</span>    <span class="n">laplacian</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">Laplacian</span><span class="p">(</span><span class="n">gray_frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CV_32F</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">abs_laplacian</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">laplacian</span><span class="p">)</span>  <span class="c1"># Valor absoluto do Laplaciano
-</span>
-    <span class="c1"># Exibe a imagem Laplaciana para verificar o resultado da borda
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Laplaciano Absoluto</span><span class="sh">"</span><span class="p">,</span> <span class="n">abs_laplacian</span> <span class="o">/</span> <span class="n">abs_laplacian</span><span class="p">.</span><span class="nf">max</span><span class="p">())</span>  <span class="c1"># Normaliza para visualização
-</span>
-    <span class="c1"># Define um limiar mais baixo para capturar mais áreas
-</span>    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">abs_laplacian</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="c1"># Usa metade da média como threshold
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Threshold adaptativo ajustado: </span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="c1"># Cria uma máscara para as áreas mais nítidas
-</span>    <span class="n">sharp_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">abs_laplacian</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
-
-    <span class="c1"># Exibe a máscara para verificar as áreas detectadas como nítidas
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Máscara de Nitidez</span><span class="sh">"</span><span class="p">,</span> <span class="n">sharp_mask</span><span class="p">)</span>
-
-    <span class="c1"># Cria uma imagem de saída para armazenar os pixels mais nítidos
-</span>    <span class="n">output_image</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-
-    <span class="c1"># Copia os pixels coloridos das áreas mais nítidas para a imagem de saída
-</span>    <span class="n">output_image</span><span class="p">[</span><span class="n">sharp_mask</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">sharp_mask</span> <span class="o">==</span> <span class="mi">255</span><span class="p">]</span>
-
-    <span class="c1"># Exibe a imagem de saída
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="sh">"</span><span class="s">Profundidade de Campo Corregida</span><span class="sh">"</span><span class="p">,</span> <span class="n">output_image</span><span class="p">)</span>
-    <span class="n">cv2</span><span class="p">.</span><span class="nf">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Pressione qualquer tecla para fechar
-</span>    <span class="n">cv2</span><span class="p">.</span><span class="nf">destroyAllWindows</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">Unresolved</span> <span class="n">directive</span> <span class="ow">in</span> <span class="n">atividadeu3_4</span><span class="p">.</span><span class="n">adoc</span> <span class="o">-</span> <span class="n">include</span><span class="p">::</span><span class="n">exemplos</span><span class="o">/</span><span class="n">atividadeu3_4</span><span class="p">.</span><span class="n">py</span><span class="p">[]</span></code></pre>
 </div>
 </div>
 </div>
@@ -717,14 +597,14 @@ pre.rouge .gs {
 <h2 id="_conclusão">Conclusão</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta atividade, exploramos a aplicação de filtros para melhorar a visualização de imagens. O uso de filtros de média permitiu uma análise comparativa entre diferentes tamanhos de máscara, enquanto o filtro laplaciano foi utilizado para corrigir o efeito de profundidade de campo em cenas específicas.</p>
+<p>A <strong>filtragem morfológica</strong> permite corrigir problemas de forma nos dígitos exibidos em um visor, tornando o software de reconhecimento mais confiável. A escolha apropriada do <strong>elemento estruturante</strong> (tamanho e forma) e da sequência de operações (abertura ou fechamento) é essencial para unir segmentos quebrados sem afetar regiões críticas, como o ponto decimal.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-17 13:03:37 -0300
+Last updated 2025-01-29 16:22:38 -0300
 </div>
 </div>
 </body>

@@ -1,0 +1,25 @@
+= Atividade 1: Extração de Contornos em Imagens
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Extraindo Contornos e Gerando Arquivos SVG
+
+Nesta atividade, adaptamos o programa `contornos.cpp` para Python, permitindo extrair contornos de objetos binarizados em uma imagem e gerar uma saída vetorial em formato SVG. A imagem resultante com o contorno sobreposto também é exibida na tela.
+
+=== Exercício: Extração de Contornos com Diferentes Aproximações
+
+O código em Python lê uma imagem em tons de cinza, realiza a binarização (threshold) e, em seguida, chama a função `findContours` com os modos `CHAIN_APPROX_NONE` ou `CHAIN_APPROX_SIMPLE`. A principal diferença entre esses modos está na quantidade de pontos gerados para cada contorno:
+- `CHAIN_APPROX_NONE`: Mantém todos os pontos da borda.
+- `CHAIN_APPROX_SIMPLE`: Simplifica o contorno, armazenando apenas os vértices necessários (o que reduz significativamente o número de pontos).
+
+[source,python]
+.Código Python para Extração de Contornos e Geração de SVG
+----
+include::exemplos/atividadeu3_1.py[]
+----
+
+== Conclusão
+
+A troca de `CHAIN_APPROX_NONE` para `CHAIN_APPROX_SIMPLE` altera o número de pontos no contorno, pois o segundo método elimina pontos colineares. Ao gerar o arquivo SVG, é possível visualizar o contorno de cada objeto de forma vetorial, ao mesmo tempo em que a imagem com o contorno desenhado é exibida na tela. Dessa forma, podemos comparar o impacto da escolha do modo de aproximação no resultado final.

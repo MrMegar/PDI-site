@@ -10,3 +10,4 @@ Aqui estão as unidades do curso:
 
 * link:unidade1.html[Unidade 1 - Introdução ao PDI e Conceitos Básicos]
 * link:unidade2.html[Unidade 2 - Estudo de PDI e Conceitos Intermediarios]
+* link:unidade3.html[Unidade 3 - Estudo de PDI e Avançados]

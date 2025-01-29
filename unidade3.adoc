@@ -1,0 +1,14 @@
+= Unidade 3 - Introdução ao PDI e Conceitos Básicos
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Atividades da Unidade 3
+
+Confira abaixo as atividades relacionadas a esta unidade:
+
+* link:atividadeu3_1.html[Atividade 1X: Extração de Contornos em Imagens]
+* link:atividadeu3_2.html[Atividade 2: Cálculo de Momentos de Hu e Rotulagem de Formas]
+* link:atividadeu3_3.html[Atividade 3: Extração de características: Momentos de Hu para contornos]
+* link:atividadeu3_4.html[Atividade 4: Filtragem de Forma com Operações Morfológicas]

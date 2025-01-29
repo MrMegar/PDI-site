@@ -1,0 +1,32 @@
+= Atividade 2: Localizando Pessoa em Multidão Usando Momentos de Hu
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Análise de Formas via Momentos de Hu
+
+Nesta atividade, adaptamos o programa `momentos-regioes.cpp` para Python, a fim de comparar os Momentos de Hu de uma pessoa extraída de uma imagem (`pessoa.jpg`) com os de componentes conectadas em outra imagem (`multidao.jpg`). Assim, podemos localizar a posição aproximada da pessoa na imagem de multidão.
+
+=== Exercício: Cálculo de Momentos e Comparação em Múltiplas Regiões
+
+O código a seguir lê duas imagens (pessoa e multidão), aplica binarização (threshold), calcula os Momentos de Hu (em escala log) e, por fim, busca qual contorno em `multidao.jpg` se assemelha mais ao contorno da pessoa.
+
+[source,python]
+.Código Python para Localização Usando Momentos de Hu
+----
+include::exemplos/atividadeu3_2.py[]
+----
+
+== Discussão e Dificuldades
+
+Para que a comparação dos Momentos de Hu funcione de forma consistente, é fundamental que a imagem da pessoa e as regiões na imagem de multidão apresentem contornos similares, levando em consideração possíveis diferenças de escala e rotação. Caso o processamento fique lento para imagens grandes, podemos usar `cv::resize()` (ou `cv2.resize()` em Python) para reduzir a dimensão e acelerar a segmentação e a comparação.
+
+Entre as principais dificuldades:
+- A segmentação (binarização) pode não ser trivial caso as imagens possuam iluminação irregular ou fundo complexo.
+- Diferentes escalas e ângulos podem tornar a correspondência imprecisa.
+- Quando há muitas pessoas ou componentes na imagem de multidão, é necessário testar cada contorno, o que pode ser custoso em termos de processamento.
+
+== Conclusão
+
+A abordagem com Momentos de Hu oferece um método para comparar formas em duas imagens distintas, mas sofre limitações quando há variações significativas de pose, rotação ou escala. O uso de redimensionamento ajuda na velocidade de processamento, mas pode reduzir a precisão. Para cenários reais, outras técnicas de detecção e segmentação mais robustas podem ser necessárias, porém esta atividade demonstra o conceito básico de como aplicar Momentos de Hu para tentar localizar uma forma específica em meio a várias na imagem.

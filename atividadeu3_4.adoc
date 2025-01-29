@@ -1,0 +1,23 @@
+= Atividade 4X: Filtragem de Forma com Operações Morfológicas
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Operações Morfológicas para Pré-filtragem de Dígitos
+
+Nesta atividade, utilizamos técnicas de **morfologia matemática** (erosão, dilatação, abertura, fechamento) para corrigir imperfeições na forma de dígitos exibidos em um visor de segmentos. O objetivo é unir partes separadas dos dígitos e facilitar o reconhecimento posterior, sem fundir o ponto decimal.
+
+=== Exercício: Erosão, Dilatação, Abertura e Fechamento
+
+O código a seguir lê a imagem de entrada, constrói um elemento estruturante retangular 3x3 e aplica as operações de erosão, dilatação, abertura, fechamento e abertura seguida de fechamento, concatenando os resultados lado a lado.
+
+[source,python]
+.Código Python para Operações Morfológicas
+----
+include::exemplos/atividadeu3_4.py[]
+----
+
+== Conclusão
+
+A **filtragem morfológica** permite corrigir problemas de forma nos dígitos exibidos em um visor, tornando o software de reconhecimento mais confiável. A escolha apropriada do **elemento estruturante** (tamanho e forma) e da sequência de operações (abertura ou fechamento) é essencial para unir segmentos quebrados sem afetar regiões críticas, como o ponto decimal.

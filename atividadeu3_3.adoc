@@ -1,0 +1,33 @@
+
+= Atividade 3: Extração de Momentos de Hu em Contornos
+Rafael Cabral <rafael.cabral.041@ufrn.edu.br>
+:toc:
+:icons:
+:source-highlighter: rouge
+
+== Extraindo Momentos de Hu em Formas Geométricas
+
+Nesta atividade, adaptamos o programa `momentos-contornos.cpp` para Python a fim de extrair as componentes conectadas de uma imagem segmentada e calcular os Momentos de Hu de cada forma. Esses momentos, após passarem por uma normalização logarítmica, são salvos em um arquivo de texto para análise comparativa.
+
+=== Exercício: Cálculo de Momentos de Hu e Rotulagem dos Contornos
+
+Este exercício faz:
+- Segmentação binária inversa da imagem de entrada.
+- Extração dos contornos externos (`cv::RETR_EXTERNAL`).
+- Desenho dos contornos e rótulos (índices) em cores distintas, dependendo de um dos valores de Hu.
+- Escrita dos Momentos de Hu (já normalizados) em um arquivo `momentos.txt`.
+
+[source,python]
+.Código Python para Cálculo de Momentos de Hu
+----
+include::exemplos/atividadeu3_3.py[]
+----
+
+== Observações e Conclusões
+
+Os Momentos de Hu oferecem uma maneira de **descrever formas** de objetos de maneira parcialmente invariante a translação, rotação e escala. Neste exemplo:
+- Apenas contornos com mais de 100 pixels são processados, para evitar ruídos e objetos muito pequenos.
+- Os valores dos Momentos de Hu são convertidos para uma escala logarítmica, facilitando a comparação entre diferentes formas.
+- A ordem dos valores dos Momentos de Hu no arquivo `momentos.txt` segue a ordem dos contornos rotulados na imagem de saída `contornos-rotulados.png`.
+
+Ao analisar os valores de Hu associados a cada forma, podemos observar que **formas semelhantes** tendem a ter Momentos de Hu próximos, enquanto **formas distintas** apresentam variações mais significativas nesses valores.
